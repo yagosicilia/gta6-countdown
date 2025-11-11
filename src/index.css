@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black text-white font-sans;
+}
+body {
+  font-family: 'Orbitron', sans-serif;
+}
+body {
+  font-family: 'Pricedown', sans-serif;
+  letter-spacing: 1px;
+}
+
