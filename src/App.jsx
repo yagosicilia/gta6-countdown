@@ -114,13 +114,13 @@ function Countdown({ title, releaseDate, color }) {
 // ========================
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black via-purple-900 to-fuchsia-900 text-white relative overflow-hidden">
-
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-black via-purple-900 to-fuchsia-900 text-white relative overflow-hidden">
 
       {/* 🔮 Fondo animado */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,128,0.15),rgba(0,0,0,0.9))] animate-pulse -z -30"></div>
 
-      <div className="z-50 text-center mt-12">
+      {/* CONTENIDO CENTRAL */}
+      <div className="flex-grow z-50 text-center mt-12">
 
         {/* TÍTULO */}
         <h1
@@ -143,9 +143,18 @@ export default function App() {
           <Countdown title="💻 PC" releaseDate={null} color="#AAAAAA" />
           <Countdown title="🕹️ Switch 2" releaseDate={null} color="#FF2B2B" />
         </div>
-
       </div>
+
+      {/* FOOTER AL FONDO */}
+      <footer className="text-center text-gray-400 text-sm mt-10 mb-5 z-50">
+        © {new Date().getFullYear()} gta6releasedate.com — Fan-made project. Not affiliated with Rockstar Games.
+      </footer>
+
     </div>
   );
 }
+
+
+
+
 
