@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
+// ========================
 // Componente de cuenta atrás
+// ========================
 function Countdown({ title, releaseDate, color }) {
   const [timeLeft, setTimeLeft] = useState({
     days: "00",
@@ -23,9 +25,16 @@ function Countdown({ title, releaseDate, color }) {
         return;
       }
 
-      const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, "0");
-      const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, "0");
-      const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, "0");
+      const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(
+        2,
+        "0"
+      );
+      const hours = String(
+        Math.floor((diff / (1000 * 60 * 60)) % 24)
+      ).padStart(2, "0");
+      const minutes = String(
+        Math.floor((diff / (1000 * 60)) % 60)
+      ).padStart(2, "0");
       const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, "0");
 
       setTimeLeft({ days, hours, minutes, seconds });
@@ -34,7 +43,7 @@ function Countdown({ title, releaseDate, color }) {
     return () => clearInterval(timer);
   }, [releaseDate]);
 
-  // 🎮 Si tiene fecha (PlayStation / Xbox)
+  // ====== SI TIENE FECHA ======
   if (releaseDate) {
     return (
       <motion.div
@@ -42,7 +51,6 @@ function Countdown({ title, releaseDate, color }) {
         className="bg-black/40 backdrop-blur-md rounded-3xl p-8 shadow-lg flex flex-col items-center justify-center text-center border"
         style={{ borderColor: color }}
       >
-        {/* CountDown arriba */}
         <div className="grid grid-cols-4 gap-4 text-center mb-6">
           <div>
             <p className="text-5xl font-bold">{timeLeft.days}</p>
@@ -62,7 +70,6 @@ function Countdown({ title, releaseDate, color }) {
           </div>
         </div>
 
-        {/* Título debajo */}
         <h2
           className="text-3xl font-bold mt-2 drop-shadow-[0_0_15px]"
           style={{ color }}
@@ -73,14 +80,13 @@ function Countdown({ title, releaseDate, color }) {
     );
   }
 
-  // 🎲 Si no tiene fecha (misteriosa)
+  // ====== SI ES CAJA MISTERIOSA ======
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
       className="bg-black/40 backdrop-blur-md rounded-3xl p-8 shadow-lg flex flex-col items-center justify-center text-center border"
       style={{ borderColor: color }}
     >
-      {/* Caja misteriosa */}
       <div className="relative w-28 h-28 mb-4">
         <div
           className="absolute inset-0 rounded-lg animate-pulse"
@@ -93,7 +99,6 @@ function Countdown({ title, releaseDate, color }) {
         </div>
       </div>
 
-      {/* Título */}
       <h2
         className="text-2xl font-bold drop-shadow-[0_0_10px]"
         style={{ color }}
@@ -104,50 +109,43 @@ function Countdown({ title, releaseDate, color }) {
   );
 }
 
+// ========================
+//         APP PRINCIPAL
+// ========================
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black via-purple-900 to-fuchsia-900 text-white font-sans relative overflow-hidden">
-      {/* Fondo animado */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,128,0.15),rgba(0,0,0,0.9))] animate-pulse"></div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black via-purple-900 to-fuchsia-900 text-white relative overflow-hidden">
 
-      <div className="z-10 text-center">
-        {/* Título principal */}
+
+      {/* 🔮 Fondo animado */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,128,0.15),rgba(0,0,0,0.9))] animate-pulse -z -30"></div>
+
+      <div className="z-50 text-center mt-12">
+
+        {/* TÍTULO */}
         <h1
-          className="text-6xl md:text-7xl font-extrabold mb-12 drop-shadow-[0_0_25px_#ff69b4] animate-pulse"
+          className="text-[5rem] md:text-[7rem] font-extrabold mb-12 drop-shadow-[0_0_25px_#ff69b4] animate-pulse"
           style={{
             fontFamily: "'Pricedown', 'Orbitron', sans-serif",
             color: "#ff66cc",
           }}
         >
-          GTA VI 
+          GTA VI
         </h1>
 
-        {/* Cajas alineadas horizontalmente */}
+        {/* CUENTAS ATRÁS */}
         <div className="flex flex-col md:flex-row gap-10 items-center justify-center">
           <Countdown
             title="🎮 PS5"
             releaseDate="2026-11-19T00:00:00"
             color="#0077FF"
           />
-          <Countdown
-            title="💻 PC"
-            releaseDate={null}
-            color="#AAAAAA"
-          />
-          <Countdown
-            title="🕹️ Switch 2"
-            releaseDate={null}
-            color="#FF2B2B"
-          />
+          <Countdown title="💻 PC" releaseDate={null} color="#AAAAAA" />
+          <Countdown title="🕹️ Switch 2" releaseDate={null} color="#FF2B2B" />
         </div>
 
-        <p className="mt-12 text-gray-300 text-lg italic">
-           The wait is almost over...
-        </p>
       </div>
     </div>
   );
 }
-
-
 
